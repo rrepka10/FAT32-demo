@@ -8,8 +8,9 @@
 // 11/17/2013 - Removed FAT.H
 //-------------------------------------------------------------------------
 //
-// How to set runtime options
+// How to set runtime options:
 // project -> FAT32 demo properties -> general properties -> debugging 
+// 
 //-------------------------------------------------------------------------
 
 
@@ -29,11 +30,6 @@ uint8_t readBuffer[32 * 1024 * 1024];
 ---------------------------------------------------------------------------*/
 int main(int argc, char *argv[])
 {
-    // Test file
-    //const char* testFile = "ONE.TXT";
-    //const char* testFile = "TWOTWO.TXT";
-    const char* testFile = "BONFIR~1.PNG";
-
     // Stores the read file handle
     FileHandle fileHandleStorage;
 
@@ -43,9 +39,14 @@ int main(int argc, char *argv[])
     uint32_t  i;
     unsigned int counter;
 
-    if (argc != 2) {
-        printf("Error: please provide the name of the disk image files\n");
-        printf("FAT32-demo  FAT_IMG_FILE\n");
+    if (argc != 3) {
+        printf("This program implements a simple FAT32 disk reader, without any external\n");
+        printf("libraries.  The disk is simulated from a RAW image copy of a ready FAT32 disk\n\n");
+        printf("FAT32-demo  DiskImage.raw FileToFind\n");
+		printf("Where: DiskImage.raw is a raw image of a FAT32 formatted disk\n");
+		printf("       FileToFind    is the file to be located and read.  There are\n");
+		printf("                     3 pre-installed files: ONE.TXT, TWOTWO.TXT, BONFIRE.PNG\n\n");
+        printf("e.g. FAT32-demo fat32-64mb.raw TWOTWO.TXT\n");
         exit(99);
     }
 
@@ -91,14 +92,14 @@ int main(int argc, char *argv[])
     initHDD();
 
 
-    if (!fatOpen(testFile, &fileHandleStorage))
+    if (!fatOpen(argv[2], &fileHandleStorage))
     {
-        printf("Error could not find %s\n\n", testFile);
+        printf("Error could not find %s\n\n", argv[2]);
     }
 
 
     // Display debug information
-    printf("%s file size= ", testFile);
+    printf("%s file size= ", argv[2]);
     printf("%0xX ", fileHandleStorage.FileSize);
     printf("attr= ");
     printf("%0xX ", fileHandleStorage.Attr);
