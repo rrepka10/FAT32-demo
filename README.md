@@ -8,5 +8,5 @@ The disk is simulated from a RAW image copy of a real FAT32 disk.
 FAT32-demo  DiskImage.raw FileToFind
 
 Where: DiskImage.raw is a raw image of a FAT32 formatted disk.
-FileToFind    is the file to be located and read.  There are 3 pre-installed files in the sample RAW file: ONE.TXT, TWOTWO.TXT, BONFIRE.PNG
+FileToFind    is the file to be located and read.  There are 3 pre-installed files in the sample RAW file: ONE.TXT, TWOTWO.TXT, BONFIR~1.PNG
 e.g. FAT32-demo fat32-64mb.raw TWOTWO.TXT
